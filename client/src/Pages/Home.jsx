@@ -12,8 +12,16 @@ const Home=()=>{
         formData.append("file",image);
         formData.append("upload_preset","shivani");
         formData.append("cloud_name","dxu8qers5")
-        const response=await axios.post(api.formData)
+        try {
+            const response=await axios.post(api,formData)
         console.log(response);
+        console.log(response.data.url);
+        alert("Image successfully uploaded");
+        } catch (error) {
+            console.log(error);
+            alert("Error while uploading image");
+        }
+        
      }
     return(
         <>
