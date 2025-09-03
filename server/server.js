@@ -13,7 +13,7 @@ const {CloudinaryStorage}=require("multer-storage-cloudinary");
 v2.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_CLOUD_KEY,
-    api_secret_: process.env.CLOUDINARY_CLOUD_SECRET,
+    api_secret: process.env.CLOUDINARY_CLOUD_SECRET,
 });
 
 //Multer Storage
