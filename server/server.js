@@ -25,6 +25,15 @@ const storage=new CloudinaryStorage({
  },
 });
 const upload = multer({ storage: storage });
+// Multiple file upload API
+app.post("/upload-multiple", upload.array("files", 10), (req, res) => {
+ try {
+ const urls = req.files.map(file => file.path); // Cloudinary URLs
+ res.json({ success: true, files: urls });
+ } catch (err) {
+ res.status(500).json({ success: false, message: err.message });
+ }
+});
 
 const Port=process.env.PORT ||4000
 
