@@ -4,6 +4,28 @@ const cors=require("cors");
 require("dotenv").config();
 const multer=require("multer");
 
+const app=express();
+app.use(cors());
+const {v2}=require("cloudinary");
+const {CloudinaryStorage}=require("multer-storage-cloudinary");
+
+// Cloudinary Config
+v2.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_CLOUD_KEY,
+    api_secret_: process.env.CLOUDINARY_CLOUD_SECRET,
+});
+
+//Multer Storage
+const storage=new CloudinaryStorage({
+    cloudinary:v2,
+    params:{
+         folder: "mern_uploads",
+         allowed_formats: ["jpg", "png", "jpeg", "pdf"],
+ },
+});
+const upload = multer({ storage: storage });
+
 const Port=process.env.PORT ||4000
 
 app.listen(Port,()=>{
